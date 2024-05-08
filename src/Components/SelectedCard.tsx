@@ -7,8 +7,10 @@ import daylight2 from '../../src/assets/times-up.jpg'
 import daylight3 from '../../src/assets/autumn-leaves.jpg'
 
 // export const selectedImgFun = () => {}
-export const SelectedCard = ({ occasion,setSelectedImage }:any) => {
-  const cardsData = {
+export const SelectedCard = ({ occasion, setSelectedImage }: { occasion: string, setSelectedImage: (imageUrl: string) => void }) => {
+  const cardsData: {
+    [key: string]: { id: number; image: string; occasion: string; name: string }[];
+  } = {
     Halloween: [
       {
         id: 1,
@@ -32,7 +34,7 @@ export const SelectedCard = ({ occasion,setSelectedImage }:any) => {
     "DayLight Saving": [
       {
         id: 4,
-        image:daylight1,
+        image: daylight1,
         occasion: "DayLight Saving",
         name: "Birthday Poster",
       },
@@ -51,21 +53,22 @@ export const SelectedCard = ({ occasion,setSelectedImage }:any) => {
     ],
   };
 
-
-  const handleImageClick = (imageUrl) => {
+  const handleImageClick = (imageUrl: string) => {
     setSelectedImage(imageUrl);
-    
   };
 
   const filteredData = cardsData[occasion];
-
 
   return (
     <div className="mt-5 p-5">
       {filteredData && (
         <div className="flex flex-wrap justify-center gap-4 mt-4 text-center">
           {filteredData.map((card) => (
-            <div key={card.id} className="min-w-64 text-start mt-4" onClick={() => handleImageClick(card.image)}>
+            <div
+              key={card.id}
+              className="min-w-64 text-start mt-4"
+              onClick={() => handleImageClick(card.image)}
+            >
               <img
                 className="h-28 w-28 mr-4 rotate-12 mb-5"
                 src={card.image}
