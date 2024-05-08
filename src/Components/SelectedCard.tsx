@@ -1,4 +1,3 @@
-import { useState } from 'react';
 
 import halloween1 from '../../src/assets/black-frame-halloween.jpg'
 import halloween2 from '../../src/assets/happy-halloween.jpg'
@@ -8,7 +7,7 @@ import daylight2 from '../../src/assets/times-up.jpg'
 import daylight3 from '../../src/assets/autumn-leaves.jpg'
 
 // export const selectedImgFun = () => {}
-export const SelectedCard = ({ occasion,setSelectedImage }) => {
+export const SelectedCard = ({ occasion,setSelectedImage }:any) => {
   const cardsData = {
     Halloween: [
       {
