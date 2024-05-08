@@ -1,9 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { fabric } from "fabric";
 import { Step3 } from "./step3";
-import { useImage } from "./imageContext";
-// import { Textarea } from "../ui/Textarea".
-// import { Textarea } from "/components/ui/textarea"
 import { Textarea } from '../../Components/ui/textarea'
 
 
@@ -11,16 +8,20 @@ import { Textarea } from '../../Components/ui/textarea'
 
 type IStep3 = {
   setStepOpen: (stepOpen: boolean) => any;
-  selectedImage: string
+  selectedImage: string,
+  user:{
+  name: string,
+    email: string
+}
 
 }
 
-export const Step2 = ({ setStepOpen, selectedImage }: IStep3) => {
+export const Step2 = ({ setStepOpen, selectedImage,user }: IStep3) => {
   const canvasRef = useRef(null);
   const [textInput, setTextInput] = useState("");
   const [count, setCount] = useState(0);
   const [step3, setStep3] = useState(false);
-  const { setImage } = useImage();
+  const [image, setImage] = useState("");
 
   useEffect(() => {
     const canvas = new fabric.Canvas(canvasRef.current);
@@ -108,7 +109,7 @@ export const Step2 = ({ setStepOpen, selectedImage }: IStep3) => {
           <canvas ref={canvasRef} />
         </div>
       ) : (
-        <Step3 setStep3={setStep3} />
+        <Step3 setStep3={setStep3} image={image} user ={user} />
       )}
     </div>
   );

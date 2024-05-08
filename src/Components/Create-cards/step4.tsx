@@ -1,10 +1,5 @@
-import { useImage } from "./imageContext";
 
-export const Step4 = () => {
-    const { image } = useImage();
-
-    
-
+export const Step4 = ({image}:any) => {
     return (
         <div className="container flex justify-start mx-auto max-w-7xl min-w-60 mt-24">
             <div className=" contaner mx-auto m-5">

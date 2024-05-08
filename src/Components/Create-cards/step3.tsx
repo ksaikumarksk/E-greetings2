@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useImage } from "./imageContext";
+import { useEffect, useState } from "react";
+// import { useUser } from "./userContext";
 import { Step4 } from "./step4";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 type IStateImage = {
   setStep3: (step3: boolean) => any;
+  image: string;
+  user:{
+    name: string;
+    email: string;
+  }
+
 }
 
-export const Step3: React.FC<IStateImage> = ({ setStep3 }) => {
-  const { image, user } = useImage();
+export const Step3 = ({ setStep3, image,user }: IStateImage) => {
   const [selectedOption, setSelectedOption] = useState<string>("");
   const [open, setOpen] = useState<boolean>(false);
   const [imageFile, setImageFile] = useState<File | undefined>();
@@ -28,29 +33,30 @@ export const Step3: React.FC<IStateImage> = ({ setStep3 }) => {
     setImageFile(file);
   }, [image])
 
+  console.log("user", user);
   const handleContinue = async () => {
     try {
       const formData = new FormData();
       formData.append('file', imageFile as Blob);
       formData.append('name', user.name);
       formData.append('email', user.email);
-      console.log("Sending image to server...",formData)
-
+      console.log("Sending image to server...", formData)
+      
+      setOpen(true);
       const response = await fetch("http://127.0.0.1:3000/upload/image", {
         method: "POST",
         body: formData,
       });
       const result = await response.json();
-      setOpen(true);
       console.log("res>>>>>>", result);
     } catch (error) {
       console.error("Error sending email:", error);
     }
   };
-console.log("startDate",startDate)
+  console.log("open", open)
   return (
     <div>
-      {open===false ? (
+      {open === false ? (
         <div className="container flex justify-start mx-auto max-w-7xl min-w-60 mt-24  shadow-slate-300 border-2">
           <div className=" contaner mx-auto m-5">
             <p className="text-red-600 p-3">E-GREETING CARD</p>
@@ -102,7 +108,7 @@ console.log("startDate",startDate)
           </div>
         </div>
       ) : (
-        <Step4 />
+        <Step4 image={image} />
       )}
     </div>
   );

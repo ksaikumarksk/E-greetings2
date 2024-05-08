@@ -3,7 +3,6 @@
 // import { Email } from './Components/Email'
 // import { Card } from './Components/Create-cards/card'
 // import { Image } from './Components/Create-cards/image'
-import { ImageProvider } from './Components/Create-cards/imageContext'
 import { Home } from './Components/Home'
 // import { Massaging } from './Components/Massaging'
 
@@ -17,10 +16,10 @@ function App() {
       {/* <Createcard/> */}
 
       {/* <Card /> */}
-      <ImageProvider>
+      {/* <UserProvider> */}
         <Home />
         {/* <Image/> */}
-      </ImageProvider>
+      {/* </UserProvider> */}
       {/* <Email/> */}
     </>
   )
