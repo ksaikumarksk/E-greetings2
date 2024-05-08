@@ -18,7 +18,7 @@ export const Step3 = ({ setStep3, image,user }: IStateImage) => {
   const [selectedOption, setSelectedOption] = useState<string>("");
   const [open, setOpen] = useState<boolean>(false);
   const [imageFile, setImageFile] = useState<File | undefined>();
-  const [startDate, setStartDate] = useState();
+  const [startDate, setStartDate] = useState<Date | null>(null);
 
   useEffect(() => {
     const byteString = atob(image.split(',')[1]);
@@ -84,7 +84,7 @@ export const Step3 = ({ setStep3, image,user }: IStateImage) => {
                   checked={selectedOption === "date"}
                   onChange={(e) => setSelectedOption(e.target.value)}
                 />
-                <DatePicker className="border-gray-500 border-2 rounded" selected={startDate} onChange={(date) => setStartDate(date)} />
+                <DatePicker className="border-gray-500 border-2 rounded" selected={startDate} onChange={(date:Date) => setStartDate(date)} />
               </label>
             </div>
             <p className="text-gray-700 pt-10 pl-3 max-w-lg">You're about to redeem 500points to send saikumar k at smoreland@ aarp.org a Halloween E-greeting card: Trick or Treat. It's scheduled to send Now. </p>
