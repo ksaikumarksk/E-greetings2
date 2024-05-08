@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import {useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { Step2 } from "./step2";
 // import { IFormInput, useUser, } from "./userContext";
